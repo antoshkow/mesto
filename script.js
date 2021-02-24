@@ -4,6 +4,8 @@ let popup = document.querySelector('.popup');
 
 function togglePopup() {
   popup.classList.toggle('popup_opened');
+  document.querySelector('#popup-name').value = document.querySelector('.profile__name').textContent;
+  document.querySelector('#popup-description').value = document.querySelector('.profile__description').textContent;
 }
 
 showPopup.addEventListener('click', togglePopup);
