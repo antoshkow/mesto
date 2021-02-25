@@ -21,8 +21,8 @@ function closePopupWindow() {
 
 function editPopup(event) {
   event.preventDefault();
-  document.querySelector('.profile__name').textContent = document.querySelector('#popup-name').value;
-  document.querySelector('.profile__description').textContent = document.querySelector('#popup-description').value;
+  profileName.textContent = popupName.value;
+  profileDescription.textContent = popupDescription.value;
   closePopupWindow();
 }
 

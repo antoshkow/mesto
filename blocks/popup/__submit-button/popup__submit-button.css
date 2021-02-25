@@ -12,6 +12,7 @@
   cursor: pointer;
   transition: opacity 1s linear .1s;
   outline: none;
+  border-radius: 2px;
 }
 
 .popup__submit-button:hover {
