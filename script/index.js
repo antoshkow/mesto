@@ -46,7 +46,7 @@ let closeCardsPopupBtn = document.querySelector('#close-cards-popup');
 let cardsPopupContainer = document.querySelector('.popup__container_add');
 let templateElement = document.querySelector('.template');
 
-//объявляем функции открытия/закрытия поп-апа, сохранения формы
+//функции открытия/закрытия поп-апа, сохранения формы
 function openPopupWindow() {
   popup.classList.add('popup_opened');
   popupName.value = profileName.textContent;
@@ -61,6 +61,7 @@ function editPopup(evt) {
   evt.preventDefault();
   profileName.textContent = popupName.value;
   profileDescription.textContent = popupDescription.value;
+
   closePopupWindow();
 }
 
@@ -76,14 +77,18 @@ function createCardsDomNode(element) {
 }
 
 function renderList() {
-  let result = initialCards.map(createCardsDomNode);
+  let result = initialCards.map(function(element) {
+    const newCard = createCardsDomNode(element);
+    addCardListeners(newCard);
+    return newCard;
+  });
 
   cardsContainer.append(...result);
 }
 
 renderList();
 
-//объявляем функции открытия/закрытия поп-апа добавления карточек и само добавление
+//функции открытия/закрытия поп-апа добавления карточек и само добавление
 function openCardsPopup() {
   cardsPopup.classList.add('popup_opened');
 }
@@ -102,7 +107,27 @@ function addCard(evt) {
       link: cardsLink
     });
 
+  addCardListeners(newCard);
+
   cardsContainer.prepend(newCard);
+
+  closeCardsPopup();
+}
+
+//лайк/удаление карточки
+function addCardListeners(newCard) {
+  const cardsLikeBtn = newCard.querySelector('.element__like');
+  const cardsDeleteBtn = newCard.querySelector('.element__trash');
+  cardsLikeBtn.addEventListener('click', likeCard);
+  cardsDeleteBtn.addEventListener('click', deleteCard);
+}
+
+function likeCard(evt) {
+  evt.target.classList.toggle('element__like_status_active');
+}
+
+function deleteCard(evt) {
+  evt.target.closest('.element').remove();
 }
 
 //добавляем 'слушатели'
@@ -112,3 +137,4 @@ popupContainer.addEventListener('submit', editPopup);
 showCardsPopupBtn.addEventListener('click', openCardsPopup);
 closeCardsPopupBtn.addEventListener('click', closeCardsPopup);
 cardsPopupContainer.addEventListener('submit', addCard);
+
