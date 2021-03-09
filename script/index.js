@@ -26,16 +26,25 @@ const initialCards = [
   }
 ];
 
-//объявляем переменные
-let cardsContainer = document.querySelector('.elements');
+//объявляем переменные (4 спринт)
 let showPopupBtn = document.querySelector('#show-popup');
-let closePopupBtn = document.querySelector('.popup__close');
+let closePopupBtn = document.querySelector('#close-popup');
 let popup = document.querySelector('.popup');
 let popupName = document.querySelector('#popup-name');
 let popupDescription = document.querySelector('#popup-description');
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
 let popupContainer = document.querySelector('.popup__container');
+
+//объявляем переменные (5 спринт)
+let cardsContainer = document.querySelector('.elements');
+let cardsPopup = document.querySelector('.popup_add');
+let cardsNameInput = document.querySelector('#popup-add-name');
+let cardsLinkInput = document.querySelector('#popup-photo-link');
+let showCardsPopupBtn = document.querySelector('#show-cards-popup');
+let closeCardsPopupBtn = document.querySelector('#close-cards-popup');
+let cardsPopupContainer = document.querySelector('.popup__container_add');
+let templateElement = document.querySelector('.template');
 
 //объявляем функции открытия/закрытия поп-апа, сохранения формы
 function openPopupWindow() {
@@ -48,32 +57,58 @@ function closePopupWindow() {
   popup.classList.remove('popup_opened');
 }
 
-function editPopup(event) {
-  event.preventDefault();
+function editPopup(evt) {
+  evt.preventDefault();
   profileName.textContent = popupName.value;
   profileDescription.textContent = popupDescription.value;
   closePopupWindow();
 }
 
 //6 карточек 'из коробки'
+function createCardsDomNode(element) {
+  const newElement = templateElement.content.cloneNode(true);
+  const elementTitle = newElement.querySelector('.element__title');
+  elementTitle.textContent = element.name;
+  const elementImg = newElement.querySelector('.element__img');
+  elementImg.src = element.link;
+
+  return newElement;
+}
+
 function renderList() {
-  let result = initialCards.map(function(element) {
-    return `
-      <li class="element">
-        <img src="${element.link}" alt="Фото" class="element__img">
-        <div class="element__bottom">
-          <h2 class="element__title">${element.name}</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </li>
-      `
-  }).join('');
-  cardsContainer.insertAdjacentHTML('afterbegin', result);
+  let result = initialCards.map(createCardsDomNode);
+
+  cardsContainer.append(...result);
 }
 
 renderList();
+
+//объявляем функции открытия/закрытия поп-апа добавления карточек и само добавление
+function openCardsPopup() {
+  cardsPopup.classList.add('popup_opened');
+}
+
+function closeCardsPopup() {
+  cardsPopup.classList.remove('popup_opened');
+}
+
+function addCard(evt) {
+  evt.preventDefault();
+  const cardsName = cardsNameInput.value;
+  const cardsLink = cardsLinkInput.value;
+  const newCard = createCardsDomNode(
+    {
+      name: cardsName,
+      link: cardsLink
+    });
+
+  cardsContainer.prepend(newCard);
+}
 
 //добавляем 'слушатели'
 showPopupBtn.addEventListener('click', openPopupWindow);
 closePopupBtn.addEventListener('click', closePopupWindow);
 popupContainer.addEventListener('submit', editPopup);
+showCardsPopupBtn.addEventListener('click', openCardsPopup);
+closeCardsPopupBtn.addEventListener('click', closeCardsPopup);
+cardsPopupContainer.addEventListener('submit', addCard);
