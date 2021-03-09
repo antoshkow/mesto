@@ -3,6 +3,7 @@
   max-width: 100%;
   width: 100%;
   overflow: hidden;
+  height: 282px;
 }
 
 @media screen and (max-width: 320px) {
