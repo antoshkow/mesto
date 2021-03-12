@@ -45,8 +45,12 @@ let showCardsPopupBtn = document.querySelector('#show-cards-popup');
 let closeCardsPopupBtn = document.querySelector('#close-cards-popup');
 let cardsPopupContainer = document.querySelector('.popup__container_add');
 let templateElement = document.querySelector('.template');
+let lightboxPopup = document.querySelector('.popup_lightbox');
+let closeLightboxPopupBtn = document.querySelector('#close-lightbox-popup');
+let lightboxImg = document.querySelector('.popup__photo');
+let lightboxFigcap = document.querySelector('.popup__figcaption');
 
-//функции открытия/закрытия поп-апа, сохранения формы
+//открытие/закрытие поп-апа, сохранение формы
 function openPopupWindow() {
   popup.classList.add('popup_opened');
   popupName.value = profileName.textContent;
@@ -63,6 +67,16 @@ function editPopup(evt) {
   profileDescription.textContent = popupDescription.value;
 
   closePopupWindow();
+}
+
+//вешаем слушатели на новые карточки
+function addCardListeners(newCard) {
+  const cardsLikeBtn = newCard.querySelector('.element__like');
+  const cardsDeleteBtn = newCard.querySelector('.element__trash');
+  const showLightboxPopupBtn = newCard.querySelector('.element__img');
+  cardsLikeBtn.addEventListener('click', likeCard);
+  cardsDeleteBtn.addEventListener('click', deleteCard);
+  showLightboxPopupBtn.addEventListener('click', openLightboxPopup);
 }
 
 //6 карточек 'из коробки'
@@ -88,7 +102,7 @@ function renderList() {
 
 renderList();
 
-//функции открытия/закрытия поп-апа добавления карточек и само добавление
+//открытие/закрытие поп-апа добавления карточек и само добавление
 function openCardsPopup() {
   cardsPopup.classList.add('popup_opened');
 }
@@ -111,17 +125,13 @@ function addCard(evt) {
 
   cardsContainer.prepend(newCard);
 
+  cardsNameInput.value = '';
+  cardsLinkInput.value = '';
+
   closeCardsPopup();
 }
 
 //лайк/удаление карточки
-function addCardListeners(newCard) {
-  const cardsLikeBtn = newCard.querySelector('.element__like');
-  const cardsDeleteBtn = newCard.querySelector('.element__trash');
-  cardsLikeBtn.addEventListener('click', likeCard);
-  cardsDeleteBtn.addEventListener('click', deleteCard);
-}
-
 function likeCard(evt) {
   evt.target.classList.toggle('element__like_status_active');
 }
@@ -130,6 +140,22 @@ function deleteCard(evt) {
   evt.target.closest('.element').remove();
 }
 
+//открытие/закрытие поп-апа с картинкой
+function openLightboxPopup(evt) {
+  lightboxPopup.classList.add('popup_opened');
+  const target = evt.target;
+  const currentPhoto = target.closest('.element');
+  const elementImg = currentPhoto.querySelector('.element__img');
+  lightboxImg.src = elementImg.src
+  const elementTitle = currentPhoto.querySelector('.element__title');
+  lightboxFigcap.textContent = elementTitle.textContent;
+}
+
+function closeLightboxPopup() {
+  lightboxPopup.classList.remove('popup_opened');
+}
+
+
 //добавляем 'слушатели'
 showPopupBtn.addEventListener('click', openPopupWindow);
 closePopupBtn.addEventListener('click', closePopupWindow);
@@ -137,4 +163,4 @@ popupContainer.addEventListener('submit', editPopup);
 showCardsPopupBtn.addEventListener('click', openCardsPopup);
 closeCardsPopupBtn.addEventListener('click', closeCardsPopup);
 cardsPopupContainer.addEventListener('submit', addCard);
-
+closeLightboxPopupBtn.addEventListener('click', closeLightboxPopup);
