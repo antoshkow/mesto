@@ -10,5 +10,10 @@
 @media screen and (max-width: 767px) {
   .element {
     max-width: 282px;
+    margin-bottom: 20px;
+  }
+
+  .element:last-child {
+    margin-bottom: 0;
   }
 }
