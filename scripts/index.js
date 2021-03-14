@@ -50,20 +50,20 @@ function editPopup(evt) {
 function createCardsDomNode(element) {
   const newElement = templateElement.content.cloneNode(true);
   const elementTitle = newElement.querySelector('.element__title');
-  const handleLikeClick = newElement.querySelector('.element__like');
-  const handleDeleteClick = newElement.querySelector('.element__trash');
-  const handleLightboxClick = newElement.querySelector('.element__img');
+  const likeButton = newElement.querySelector('.element__like');
+  const DeleteButton = newElement.querySelector('.element__trash');
+  const cardImage = newElement.querySelector('.element__img');
 
   elementTitle.textContent = element.name;
-  handleLightboxClick.src = element.link;
-  handleLightboxClick.alt = element.alt;
+  cardImage.src = element.link;
+  cardImage.alt = element.alt;
 
-  handleLikeClick.addEventListener('click', likeCard);
-  handleDeleteClick.addEventListener('click', deleteCard);
-  handleLightboxClick.addEventListener('click', function(evt) {
+  likeButton.addEventListener('click', likeCard);
+  DeleteButton.addEventListener('click', deleteCard);
+  cardImage.addEventListener('click', function(evt) {
     openPopup(lightboxPopup);
-    lightboxImg.src = handleLightboxClick.src;
-    lightboxImg.alt = handleLightboxClick.alt;
+    lightboxImg.src = cardImage.src;
+    lightboxImg.alt = cardImage.alt;
     lightboxFigcap.textContent = elementTitle.textContent});
 
   return newElement;
@@ -72,7 +72,7 @@ function createCardsDomNode(element) {
 function renderList() {
   const sixCards = initialCards.map(function(element) {
     const newCard = createCardsDomNode(element);
-    createCardsDomNode(newCard);
+
     return newCard;
   });
 
@@ -91,8 +91,6 @@ function addCard(evt) {
       name: cardsName,
       link: cardsLink
     });
-
-  createCardsDomNode(newCard);
 
   cardsContainer.prepend(newCard);
 
