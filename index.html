@@ -32,20 +32,24 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
     <section class="popup">
-      <form class="popup__container" name="pop-up">
+      <form class="popup__container" name="pop-up" novalidate>
         <button type="button" class="popup__close" id="close-popup"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" name="name" id="popup-name" class="popup__input" placeholder="Имя">
-        <input type="text" name="description" id="popup-description" class="popup__input" placeholder="Описание">
+        <input type="text" name="name" id="popup-name" class="popup__input" placeholder="Имя" minlength="2" maxlength="40" required>
+        <span class="popup__error" id="popup-name-error"></span>
+        <input type="text" name="description" id="popup-description" class="popup__input" placeholder="О себе" minlength="2" maxlength="200" required>
+        <span class="popup__error" id="popup-description-error"></span>
         <button type="submit" class="popup__submit-button">Сохранить</button>
       </form>
     </section>
     <section class="popup popup_add">
-      <form class="popup__container popup__container_add" name="pop-up-add">
+      <form class="popup__container popup__container_add" name="pop-up-add" novalidate>
         <button type="button" class="popup__close" id="close-cards-popup"></button>
         <h2 class="popup__title">Новое место</h2>
-        <input type="text" name="photo-name" id="popup-add-name" class="popup__input" placeholder="Название">
-        <input type="text" name="photo-link" id="popup-photo-link" class="popup__input" placeholder="Ссылка на картинку">
+        <input type="text" name="photo-name" id="popup-add-name" class="popup__input" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="popup__error"></span>
+        <input type="url" name="photo-link" id="popup-photo-link" class="popup__input" placeholder="Ссылка на картинку" required>
+        <span class="popup__error"></span>
         <button type="submit" class="popup__submit-button">Создать</button>
       </form>
     </section>
@@ -68,6 +72,7 @@
     </template>
   </div>
   <script src="./scripts/initial-cards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

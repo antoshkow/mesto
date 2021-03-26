@@ -22,20 +22,26 @@ const closeLightboxPopupBtn = document.querySelector('#close-lightbox-popup');
 const lightboxImg = document.querySelector('.popup__photo');
 const lightboxFigcap = document.querySelector('.popup__figcaption');
 
+//объявляем переменные (6 спринт)
+const page = document.querySelector('.page');
+
 //открытие/закрытие поп-апов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', keyHandler);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  page.removeEventListener('keydown', keyHandler);
 }
 
 //сохранение попапа имени
 function openPopupWindow() {
-  openPopup(popup);
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
+
+  openPopup(popup);
 }
 
 function editPopup(evt) {
@@ -51,7 +57,7 @@ function createCardsDomNode(element) {
   const newElement = templateElement.content.cloneNode(true);
   const elementTitle = newElement.querySelector('.element__title');
   const likeButton = newElement.querySelector('.element__like');
-  const DeleteButton = newElement.querySelector('.element__trash');
+  const deleteButton = newElement.querySelector('.element__trash');
   const cardImage = newElement.querySelector('.element__img');
 
   elementTitle.textContent = element.name;
@@ -59,12 +65,14 @@ function createCardsDomNode(element) {
   cardImage.alt = element.alt;
 
   likeButton.addEventListener('click', likeCard);
-  DeleteButton.addEventListener('click', deleteCard);
+  deleteButton.addEventListener('click', deleteCard);
   cardImage.addEventListener('click', function(evt) {
-    openPopup(lightboxPopup);
     lightboxImg.src = cardImage.src;
     lightboxImg.alt = cardImage.alt;
-    lightboxFigcap.textContent = elementTitle.textContent});
+    lightboxFigcap.textContent = elementTitle.textContent;
+
+    openPopup(lightboxPopup);
+  });
 
   return newElement;
 }
@@ -116,3 +124,20 @@ showCardsPopupBtn.addEventListener('click', function() { openPopup(cardsPopup) }
 closeCardsPopupBtn.addEventListener('click', function() { closePopup(cardsPopup) });
 cardsPopupContainer.addEventListener('submit', addCard);
 closeLightboxPopupBtn.addEventListener('click', function() { closePopup(lightboxPopup) });
+
+//закрытие поп-апа кликом на оверлей
+page.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(popup);
+    closePopup(cardsPopup);
+    closePopup(lightboxPopup);
+  }
+});
+
+//закрытие поп-апа кликом на esc
+function keyHandler(evt) {
+  const showPopup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(showPopup);
+  };
+};
