@@ -25,7 +25,7 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
     buttonElement.removeAttribute('disabled');
-  }
+  };
 };
 
 //выводим ошибку
@@ -34,7 +34,7 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass);
-}
+};
 
 //убираем ошибку
 const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
@@ -42,7 +42,7 @@ const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) 
   inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = '';
-}
+};
 
 //проверяем состояние поля (валидность)
 const checkInput = (formElement, inputElement, inputErrorClass, errorClass) => {
@@ -52,8 +52,8 @@ const checkInput = (formElement, inputElement, inputErrorClass, errorClass) => {
   } else {
     //скрываем ошибку
      hideInputError(formElement, inputElement, inputErrorClass, errorClass);
-  }
-}
+  };
+};
 
 //вешаем слушатели событий
 const setInputListeners = (formElement, inputSelector, inactiveButtonClass, submitButtonSelector, inputErrorClass, errorClass) => {
