@@ -24,17 +24,18 @@ const lightboxFigcap = document.querySelector('.popup__figcaption');
 
 //объявляем переменные (6 спринт)
 const page = document.querySelector('.page');
+const submitButton = document.querySelector('#popup-add-submit-button');
 
 //открытие/закрытие поп-апов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', keyHandler);
-}
+};
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   page.removeEventListener('keydown', keyHandler);
-}
+};
 
 //сохранение попапа имени
 function openPopupWindow() {
@@ -42,7 +43,7 @@ function openPopupWindow() {
   popupDescription.value = profileDescription.textContent;
 
   openPopup(popup);
-}
+};
 
 function editPopup(evt) {
   evt.preventDefault();
@@ -50,7 +51,7 @@ function editPopup(evt) {
   profileDescription.textContent = popupDescription.value;
 
   closePopup(popup);
-}
+};
 
 //6 карточек 'из коробки'
 function createCardsDomNode(element) {
@@ -75,7 +76,7 @@ function createCardsDomNode(element) {
   });
 
   return newElement;
-}
+};
 
 function renderList() {
   const sixCards = initialCards.map(function(element) {
@@ -85,7 +86,7 @@ function renderList() {
   });
 
   cardsContainer.append(...sixCards);
-}
+};
 
 renderList();
 
@@ -105,16 +106,18 @@ function addCard(evt) {
   cardsPopupContainer.reset();
 
   closePopup(cardsPopup);
-}
+
+  popupButtonDisabled(cardsPopup);
+};
 
 //лайк/удаление карточки
 function likeCard(evt) {
   evt.target.classList.toggle('element__like_status_active');
-}
+};
 
 function deleteCard(evt) {
   evt.target.closest('.element').remove();
-}
+};
 
 //добавляем 'слушатели'
 showPopupBtn.addEventListener('click', openPopupWindow);
@@ -128,16 +131,20 @@ closeLightboxPopupBtn.addEventListener('click', function() { closePopup(lightbox
 //закрытие поп-апа кликом на оверлей
 page.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup_opened')) {
-    closePopup(popup);
-    closePopup(cardsPopup);
-    closePopup(lightboxPopup);
-  }
+    closePopup(evt.target);
+  };
 });
 
 //закрытие поп-апа кликом на esc
 function keyHandler(evt) {
-  const showPopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
+    const showPopup = document.querySelector('.popup_opened');
     closePopup(showPopup);
   };
+};
+
+//деактивация кнопки 'сохранить'
+function popupButtonDisabled() {
+  submitButton.classList.add('popup__submit-button_disabled');
+  submitButton.setAttribute('disabled', true);
 };

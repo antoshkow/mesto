@@ -1,15 +1,10 @@
-const obj = {
+const validationConfig = {
   formSelector: '.popup__container',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-};
-
-const allInputsEmpty = (inputList) => {
-  return !inputList.some(inputElement =>
-  inputElement.value.length > 0);
 };
 
 //проверка валидности инпутов
@@ -19,7 +14,7 @@ const hasInvalidInput = (inputList) => {
 
 //переключаем состояние кнопки
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
-  if (hasInvalidInput(inputList) || allInputsEmpty(inputList)) {
+  if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
   } else {
@@ -83,4 +78,4 @@ const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, i
   });
 };
 
-enableValidation(obj);
+enableValidation(validationConfig);
