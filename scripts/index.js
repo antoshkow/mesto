@@ -107,7 +107,7 @@ function addCard(evt) {
 
   closePopup(cardsPopup);
 
-  popupButtonDisabled(cardsPopup);
+  disablePopupBtn(validationConfig);
 };
 
 //лайк/удаление карточки
@@ -144,7 +144,8 @@ function keyHandler(evt) {
 };
 
 //деактивация кнопки 'сохранить'
-function popupButtonDisabled() {
-  submitButton.classList.add('popup__submit-button_disabled');
+function disablePopupBtn(validationConfig) {
+  const { formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass } = validationConfig;
+  submitButton.classList.add(validationConfig.inactiveButtonClass);
   submitButton.setAttribute('disabled', true);
 };
