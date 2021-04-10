@@ -4,6 +4,7 @@ export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._alt = data.alt;
     this._cardSelector = cardSelector;
   };
 
@@ -26,15 +27,16 @@ export class Card {
 
     this._element.querySelector('.element__img').src = this._link;
     this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector('.element__img').alt = this._alt;
 
     return this._element;
   };
 
   //лайтбокс попап
   _handleImageClick() {
-    lightboxImg.src = this._element.querySelector('.element__img').src;
-    lightboxImg.alt = this._element.querySelector('.element__img').alt;
-    lightboxFigcap.textContent = this._element.querySelector('.element__title').textContent;
+    lightboxImg.src = this._link;
+    lightboxImg.alt = this._alt;
+    lightboxFigcap.textContent = this._name;
 
     openPopup(lightboxPopup);
   };

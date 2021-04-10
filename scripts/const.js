@@ -39,7 +39,7 @@ const validationConfig = {
 //объявляем переменные (4 спринт)
 const showPopupBtn = document.querySelector('#show-popup');
 const closePopupBtn = document.querySelector('#close-popup');
-const popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup_profile');
 const popupName = document.querySelector('#popup-name');
 const popupDescription = document.querySelector('#popup-description');
 const profileName = document.querySelector('.profile__name');

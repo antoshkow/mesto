@@ -7,18 +7,26 @@ export { openPopup, closePopup };
 const forms = Array.from(document.querySelectorAll('.popup__container'));
 forms.forEach((formElement) => {
   const newFormValidator = new FormValidator(validationConfig, formElement).enableValidation();
-  });
+});
+
+
+//функция создания карточки
+const createCard = (data, cardSelector) => {
+  //создаем экземпляр карточки
+  const card = new Card(data, cardSelector);
+  //возвращаем наружу
+  const cardElement = card.generateCard();
+
+  return cardElement;
+};
 
 //отрисовываем карточки на страницу
 initialCards.map((element) => {
-  //создаем экземпляр карточки
-  const card = new Card(element, '.template_type_default');
-  //возвращаем наружу
-  const cardElement = card.generateCard();
+ const newCard = createCard(element, '.template_type_default');
   //добавляем в DOM
-  cardsContainer.append(cardElement);
+  cardsContainer.append(newCard);
 
-  return cardElement;
+  return newCard;
 });
 
 //добавление карточек
@@ -26,14 +34,12 @@ function addCard(evt) {
   evt.preventDefault();
   const cardsName = cardsNameInput.value;
   const cardsLink = cardsLinkInput.value;
-  const card = new Card( {
+  const newCard = createCard( {
       name: cardsName,
       link: cardsLink
     }, '.template_type_default');
 
-  const cardElement = card.generateCard();
-
-  cardsContainer.prepend(cardElement);
+  cardsContainer.prepend(newCard);
 
   cardsPopupContainer.reset();
 
@@ -50,7 +56,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  page.removeEventListener('keydown', keyHandler);
+  document.removeEventListener('keydown', keyHandler);
 };
 
 //сохранение попапа имени

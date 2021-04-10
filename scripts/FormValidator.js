@@ -48,19 +48,19 @@ export class FormValidator {
   };
 
   //вешаем слушатели событий
-  _setInputListeners(formElement, inputSelector, inactiveButtonClass, submitButtonSelector, inputErrorClass, errorClass) {
+  _setInputListeners(formElement, inputSelector, submitButtonSelector) {
     const inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     const buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
 
     inputList.forEach(inputElement => {
       inputElement.addEventListener('input', (evt) => {
         //проверяем состояние поля (валидность)
-        this._checkInput(formElement, inputElement, inputErrorClass, errorClass);
+        this._checkInput(formElement, inputElement);
         //переключаем состояние кнопки
-        this._toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+        this._toggleButtonState(inputList, buttonElement);
       });
 
-      this._toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+      this._toggleButtonState(inputList, buttonElement);
       });
   };
 
