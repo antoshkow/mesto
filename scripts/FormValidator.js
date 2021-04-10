@@ -21,7 +21,7 @@ export class FormValidator {
   };
 
   //выводим ошибку
-  _showInputError(formElement, inputElement, errorMessage, inputErrorClass, errorClass) {
+  _showInputError(inputElement, errorMessage, inputErrorClass, errorClass) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._config.inputErrorClass);
     errorElement.textContent = errorMessage;
@@ -29,7 +29,7 @@ export class FormValidator {
   };
 
   //убираем ошибку
-  _hideInputError(formElement, inputElement, inputErrorClass, errorClass) {
+  _hideInputError(inputElement, inputErrorClass, errorClass) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._config.inputErrorClass);
     errorElement.classList.remove(this._config.errorClass);
@@ -37,25 +37,25 @@ export class FormValidator {
   };
 
   //проверяем состояние поля (валидность)
-  _checkInput(formElement, inputElement, inputErrorClass, errorClass) {
+  _checkInput(inputElement, inputErrorClass, errorClass) {
     if (!inputElement.validity.valid) {
       //выводим ошибку
-      this._showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
+      this._showInputError(inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
     } else {
       //скрываем ошибку
-      this._hideInputError(formElement, inputElement, inputErrorClass, errorClass);
+      this._hideInputError(inputElement, inputErrorClass, errorClass);
     };
   };
 
   //вешаем слушатели событий
-  _setInputListeners(formElement, inputSelector, submitButtonSelector) {
+  _setInputListeners() {
     const inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     const buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
 
     inputList.forEach(inputElement => {
       inputElement.addEventListener('input', (evt) => {
         //проверяем состояние поля (валидность)
-        this._checkInput(formElement, inputElement);
+        this._checkInput(inputElement);
         //переключаем состояние кнопки
         this._toggleButtonState(inputList, buttonElement);
       });
@@ -65,7 +65,7 @@ export class FormValidator {
   };
 
   //убираем ошибку при открытии попапа профиля
-  hideProfileInputError(formElement, inputElement, inputErrorClass, errorClass) {
+  hideProfileInputError(inputElement, inputErrorClass, errorClass) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._config.inputErrorClass);
     errorElement.classList.remove(this._config.errorClass);
