@@ -6,7 +6,7 @@ export { openPopup, closePopup };
 //запуск валидации
 const forms = Array.from(document.querySelectorAll('.popup__container'));
 forms.forEach((formElement) => {
-  const newFormValidator = new FormValidator(validationConfig, formElement).enableValidation();
+  new FormValidator(validationConfig, formElement).enableValidation();
 });
 
 
@@ -104,7 +104,6 @@ function keyHandler(evt) {
 
 //деактивация кнопки 'сохранить'
 function disablePopupBtn(validationConfig) {
-  const { formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass } = validationConfig;
   submitButton.classList.add(validationConfig.inactiveButtonClass);
   submitButton.setAttribute('disabled', true);
 };
