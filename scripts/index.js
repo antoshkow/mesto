@@ -64,6 +64,9 @@ function openPopupWindow() {
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
 
+  const newFormValidator = new FormValidator(validationConfig, popup);
+  newFormValidator.deletePopupErrors();
+
   openPopup(popup);
 };
 
