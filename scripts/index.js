@@ -9,7 +9,6 @@ forms.forEach((formElement) => {
   new FormValidator(validationConfig, formElement).enableValidation();
 });
 
-
 //функция создания карточки
 const createCard = (data, cardSelector) => {
   //создаем экземпляр карточки
@@ -63,9 +62,6 @@ function closePopup(popup) {
 function openPopupWindow() {
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
-
-  const newFormValidator = new FormValidator(validationConfig, popup);
-  newFormValidator.deletePopupErrors();
 
   openPopup(popup);
 };

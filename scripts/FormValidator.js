@@ -64,27 +64,6 @@ export class FormValidator {
       });
   };
 
-  //убираем ошибку при открытии попапа профиля
-  hideProfileInputError(inputElement, inputErrorClass, errorClass) {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove(this._config.inputErrorClass);
-    errorElement.classList.remove(this._config.errorClass);
-    errorElement.textContent = '';
-  };
-
-
-  //сброс ошибок полей перед открытием попапа
-  deletePopupErrors() {
-    const errorList = Array.from(document.querySelectorAll('.popup__error'));
-    errorList.forEach(errorElement => {
-      errorElement.classList.remove(this._config.errorClass);
-    });
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
-    this._inputList.forEach(inputElement => {
-      inputElement.classList.remove(this._config.inputErrorClass);
-    });
-  };
-
   enableValidation() {
     //вешаем слушатели
     this._setInputListeners();
