@@ -42,9 +42,9 @@ function addCard(evt) {
 
   cardsPopupContainer.reset();
 
-  closePopup(cardsPopup);
+  addValidator.toggleButtonState();
 
-  disablePopupBtn(validationConfig);
+  closePopup(cardsPopup);
 };
 
 //открытие/закрытие поп-апов
@@ -64,6 +64,7 @@ function openPopupWindow() {
   popupDescription.value = profileDescription.textContent;
 
   profileValidator.deletePopupErrors();
+  profileValidator.toggleButtonState();
 
   openPopup(popup);
 };
@@ -98,10 +99,4 @@ function keyHandler(evt) {
     const showPopup = document.querySelector('.popup_opened');
     closePopup(showPopup);
   };
-};
-
-//деактивация кнопки 'сохранить'
-function disablePopupBtn(validationConfig) {
-  submitButton.classList.add(validationConfig.inactiveButtonClass);
-  submitButton.setAttribute('disabled', true);
 };
