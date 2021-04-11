@@ -12,7 +12,7 @@ export class FormValidator {
   };
 
   //переключаем состояние кнопки
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._config.inactiveButtonClass);
       this._buttonElement.setAttribute('disabled', true);
@@ -56,10 +56,10 @@ export class FormValidator {
         //проверяем состояние поля (валидность)
         this._checkInput(inputElement);
         //переключаем состояние кнопки
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
 
-      this._toggleButtonState();
+      this.toggleButtonState();
       });
   };
 
