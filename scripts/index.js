@@ -4,11 +4,10 @@ import { FormValidator } from './FormValidator.js';
 export { openPopup, closePopup };
 
 //запуск валидации
-const forms = Array.from(document.querySelectorAll('.popup__container'));
-forms.forEach((formElement) => {
-  new FormValidator(validationConfig, formElement).enableValidation();
-});
-
+const addValidator = new FormValidator(validationConfig, cardsPopup);
+addValidator.enableValidation();
+const profileValidator = new FormValidator(validationConfig, popup);
+profileValidator.enableValidation();
 
 //функция создания карточки
 const createCard = (data, cardSelector) => {
@@ -64,8 +63,7 @@ function openPopupWindow() {
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
 
-  const newFormValidator = new FormValidator(validationConfig, popup);
-  newFormValidator.deletePopupErrors();
+  profileValidator.deletePopupErrors();
 
   openPopup(popup);
 };
