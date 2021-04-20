@@ -1,15 +1,15 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
-  };
+  }
 
   //проверка валидности инпутов
   _hasInvalidInput() {
     return this._inputList.some(inputElement => !inputElement.validity.valid);
-  };
+  }
 
   //переключаем состояние кнопки
   toggleButtonState() {
@@ -19,8 +19,8 @@ export class FormValidator {
     } else {
       this._buttonElement.classList.remove(this._config.inactiveButtonClass);
       this._buttonElement.removeAttribute('disabled');
-    };
-  };
+    }
+  }
 
   //выводим ошибку
   _showInputError(inputElement, errorMessage) {
@@ -28,7 +28,7 @@ export class FormValidator {
     inputElement.classList.add(this._config.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._config.errorClass);
-  };
+  }
 
   //убираем ошибку
   _hideInputError(inputElement) {
@@ -36,7 +36,7 @@ export class FormValidator {
     inputElement.classList.remove(this._config.inputErrorClass);
     errorElement.classList.remove(this._config.errorClass);
     errorElement.textContent = '';
-  };
+  }
 
   //проверяем состояние поля (валидность)
   _checkInput(inputElement) {
@@ -46,8 +46,8 @@ export class FormValidator {
     } else {
       //скрываем ошибку
       this._hideInputError(inputElement);
-    };
-  };
+    }
+  }
 
   //вешаем слушатели событий
   _setInputListeners() {
@@ -61,17 +61,17 @@ export class FormValidator {
 
       this.toggleButtonState();
       });
-  };
+  }
 
   //сброс ошибок полей перед открытием попапа
   deletePopupErrors() {
     this._inputList.forEach(inputElement => {
       this._hideInputError(inputElement);
     });
-  };
+  }
 
   enableValidation() {
     //вешаем слушатели
     this._setInputListeners();
-  };
-};
+  }
+}

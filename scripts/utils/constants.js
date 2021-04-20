@@ -69,3 +69,5 @@ const lightboxFigcap = document.querySelector('.popup__figcaption');
 //объявляем переменные (6 спринт)
 const page = document.querySelector('.page');
 const submitButton = document.querySelector('#popup-add-submit-button');
+
+export { lightboxPopup, cardsPopup, validationConfig, popup, profileName, profileDescription, cardsContainer, showPopupBtn, showCardsPopupBtn, initialCards, cardsNameInput, cardsLinkInput, popupName, popupDescription };
