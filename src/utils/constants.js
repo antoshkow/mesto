@@ -70,4 +70,11 @@ const lightboxFigcap = document.querySelector('.popup__figcaption');
 const page = document.querySelector('.page');
 const submitButton = document.querySelector('#popup-add-submit-button');
 
-export { lightboxPopup, cardsPopup, validationConfig, popup, profileName, profileDescription, cardsContainer, showPopupBtn, showCardsPopupBtn, initialCards, cardsNameInput, cardsLinkInput, popupName, popupDescription };
+//оъявляем переменные (9 спринт)
+const submitPopupSelector = document.querySelector('.popup_confirm');
+const avatarPopupSelector = document.querySelector('.popup_avatar');
+const editAvatar = document.querySelector('.profile__overlay');
+const avatarImg = document.querySelector('.profile__avatar');
+const avatarInput = document.querySelector('#popup-avatar-link');
+
+export { lightboxPopup, cardsPopup, validationConfig, popup, profileName, profileDescription, cardsContainer, showPopupBtn, showCardsPopupBtn, initialCards, cardsNameInput, cardsLinkInput, popupName, popupDescription, submitPopupSelector, avatarPopupSelector, editAvatar, avatarImg, avatarInput };
