@@ -25,7 +25,6 @@ export default class PopupWithForm extends Popup {
   close() {
     //при закрытии попапа форма еще и сбрасывается
     super.close();
-    this._form.removeEventListener('submit', this._submitHandler)
     this._form.reset();
   }
 
