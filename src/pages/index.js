@@ -96,14 +96,13 @@ Promise.all([
     cardList.renderItems(cardsData);
     //редактирование профиля
     const editProfilePopup = new PopupWithForm(popup, (userData) => {
-      const saveLoading = popup.querySelector('.popup__submit-button');
-      saveLoading.textContent = 'Сохранение...';
+      editProfilePopup.renderLoading('Сохранение...')
       api.editProfile({
         name: userData.name,
         about: userData.description
       })
         .then((res) => {
-          saveLoading.textContent = 'Сохранить';
+          editProfilePopup.renderLoading('Сохранить');
           userInfo.setUserInfo({
             name: res.name,
             about: res.about
@@ -117,14 +116,13 @@ Promise.all([
     editProfilePopup.setEventListeners();
     //добавление новой карточки
     const addPopup = new PopupWithForm(cardsPopup, (cardsData) => {
-      const saveLoading = cardsPopup.querySelector('.popup__submit-button')
-      saveLoading.textContent = 'Сохранение...';
+      addPopup.renderLoading('Сохранение...');
       api.addNewCard({
         name: cardsData['photo-name'],
         link: cardsData['photo-link']
       })
         .then((data) => {
-          saveLoading.textContent = 'Создать';
+          addPopup.renderLoading('Создать');
           const newCard = createCard(data);
           cardList.addItem(newCard);
           addPopup.close()
@@ -136,11 +134,10 @@ Promise.all([
     addPopup.setEventListeners();
     //обновление аватара пользователя
     const avatarPopup = new PopupWithForm(avatarPopupSelector, (userData) => {
-      const saveLoading = cardsPopup.querySelector('.popup__submit-button')
-      saveLoading.textContent = 'Сохранение...';
+      avatarPopup.renderLoading('Сохранение...')
       api.updateAvatar({ avatar: userData['avatar-link'] })
         .then((data) => {
-          saveLoading.textContent = 'Сохранить';
+          avatarPopup.renderLoading('Сохранить')
           userInfo.updateAvatar({ avatar: data.avatar });
           avatarPopup.close();
         })
@@ -159,17 +156,14 @@ Promise.all([
       const userData = userInfo.getUserInfo();
       popupName.value = userData.name;
       popupDescription.value = userData.about;
-      profileValidator.deletePopupErrors();
-      profileValidator.toggleButtonState();
+      profileValidator.resetValidation();
     });
     showCardsPopupBtn.addEventListener('click', () => {
       addPopup.open();
-      addValidator.toggleButtonState();
-      addValidator.deletePopupErrors();
+      addValidator.resetValidation();
     });
     editAvatar.addEventListener('click', () => {
       avatarPopup.open();
-      avatarValidator.deletePopupErrors();
-      avatarValidator.toggleButtonState();
+      avatarValidator.resetValidation();
     });
 });

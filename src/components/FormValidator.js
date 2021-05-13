@@ -74,4 +74,9 @@ export default class FormValidator {
     //вешаем слушатели
     this._setInputListeners();
   }
+
+  resetValidation() {
+    this.deletePopupErrors();
+    this.toggleButtonState();
+  }
 }
