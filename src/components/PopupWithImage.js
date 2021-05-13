@@ -1,18 +1,17 @@
 import Popup from './Popup.js';
 
 export default class PopupWithImage extends Popup {
-  constructor(popupSelector) {
+  constructor(popupSelector, lightboxImg, lightboxFigcap) {
     super(popupSelector);
+    this._lightboxImg = lightboxImg;
+    this._lightboxFigcap = lightboxFigcap;
   }
 
-  open(cardImage, cardTitle) {
+  open(card) {
     //вставляем в попап картинку, атрибут src и подпись
     super.open();
-    const lightboxImg = this._popup.querySelector('.popup__photo');
-    const lightboxFigcap = this._popup.querySelector('.popup__figcaption');
-
-    lightboxImg.src = cardImage.src;
-    lightboxImg.alt = cardImage.alt;
-    lightboxFigcap.textContent = cardTitle.textContent;
+    this._lightboxImg.src = card.link;
+    this._lightboxImg.alt = card.name;
+    this._lightboxFigcap.textContent = card.name;
   }
 }

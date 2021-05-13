@@ -77,4 +77,4 @@ const editAvatar = document.querySelector('.profile__overlay');
 const avatarImg = document.querySelector('.profile__avatar');
 const avatarInput = document.querySelector('#popup-avatar-link');
 
-export { lightboxPopup, cardsPopup, validationConfig, popup, profileName, profileDescription, cardsContainer, showPopupBtn, showCardsPopupBtn, initialCards, cardsNameInput, cardsLinkInput, popupName, popupDescription, submitPopupSelector, avatarPopupSelector, editAvatar, avatarImg, avatarInput };
+export { lightboxPopup, cardsPopup, validationConfig, popup, profileName, profileDescription, cardsContainer, showPopupBtn, showCardsPopupBtn, initialCards, cardsNameInput, cardsLinkInput, popupName, popupDescription, submitPopupSelector, avatarPopupSelector, editAvatar, avatarImg, avatarInput, lightboxImg, lightboxFigcap };
