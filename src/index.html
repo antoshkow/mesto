@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+    <meta name="description" content="Курсовая работа 8. Проектная работа 4">
+    <meta name="author" content="Земсков А.А.">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <a href="#" target="_blank" rel="noopener" class="header__logo"><img src="<%=require('./images/logo.svg')%>" class="header__logo" alt="Лого Mesto"></a>
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__left">
+          <div class="profile__overlay">
+          <img src="#" alt="Аватар" class="profile__avatar">
+          </div>
+          <div class="profile__info">
+            <h1 class="profile__name"></h1>
+            <p class="profile__description"></p>
+            <button type="button" class="profile__edit-button" id="show-popup" aria-label="Edit"></button>
+          </div>
+        </div>
+        <button type="button" class="profile__add-button" id="show-cards-popup"></button>
+      </section>
+      <ul class="elements">
+      </ul>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+    <section class="popup popup_profile">
+      <form class="popup__container" name="pop-up" novalidate>
+        <button type="button" class="popup__close" id="close-popup"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" name="name" id="popup-name" class="popup__input" placeholder="Имя" minlength="2" maxlength="40" required>
+        <span class="popup__error" id="popup-name-error"></span>
+        <input type="text" name="description" id="popup-description" class="popup__input" placeholder="О себе" minlength="2" maxlength="200" required>
+        <span class="popup__error" id="popup-description-error"></span>
+        <button type="submit" class="popup__submit-button">Сохранить</button>
+      </form>
+    </section>
+    <section class="popup popup_add">
+      <form class="popup__container popup__container_add" name="pop-up-add" novalidate>
+        <button type="button" class="popup__close" id="close-cards-popup"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <input type="text" name="photo-name" id="popup-add-name" class="popup__input" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="popup__error" id="popup-add-name-error"></span>
+        <input type="url" name="photo-link" id="popup-photo-link" class="popup__input" placeholder="Ссылка на картинку" required>
+        <span class="popup__error" id="popup-photo-link-error"></span>
+        <button type="submit" class="popup__submit-button" id="popup-add-submit-button">Создать</button>
+      </form>
+    </section>
+    <section class="popup popup_lightbox">
+      <figure class="popup__figure">
+        <button type="button" class="popup__close" id="close-lightbox-popup"></button>
+        <img src="#" alt="Фото" class="popup__photo">
+        <figcaption class="popup__figcaption"></figcaption>
+      </figure>
+    </section>
+    <section class="popup popup_confirm">
+      <form class="popup__container" name="pop-up-confirm" novalidate>
+        <button type="button" class="popup__close" id="close-popup-submit"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="submit" class="popup__submit-button">Да</button>
+      </form>
+    </section>
+    <section class="popup popup_avatar">
+      <form class="popup__container" name="pop-up-avatar" novalidate>
+        <button type="button" class="popup__close" id="close-popup-avatar"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <input type="url" name="avatar-link" id="popup-avatar-link" class="popup__input" placeholder="Ссылка на картинку" required>
+        <span class="popup__error" id="popup-avatar-link-error"></span>
+        <button type="submit" class="popup__submit-button">Сохранить</button>
+      </form>
+    </section>
+    <template class="template template_type_default">
+      <li class="element">
+        <button type="button" class="element__trash"></button>
+        <img src="#" alt="Фото" class="element__img">
+        <div class="element__bottom">
+          <h2 class="element__title"></h2>
+          <div class="element__likes">
+            <button type="button" class="element__like"></button>
+            <p class="element__counter">0</p>
+          </div>
+        </div>
+      </li>
+    </template>
+  </div>
+</body>
+</html>
