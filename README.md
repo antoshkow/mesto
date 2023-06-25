@@ -1,19 +1,19 @@
-# Место
+# Mesto
 
-## Проектная работа 3
+## Project work 3
 
-1. Проектная работа "Место" (спринт 4-9).
+1. Project work "Mesto" (sprint 4-9).
 
-2. Интерактивная страница, куда можно добавлять фотографии, удалять их, ставить лайки. Часть логики написана на JavaScript (появление pop-up окон, валидация форм, добавление карточек и т.п.). В *5-ом спринте* мы реализовали открытие/закрытие и функционал поп-апа добавления элементов, их удаление, а также поп-ап с lightbox-изображением. В *6-ом спринте* мы разработали валидацию форм и улучшили UX при работе с поп-апами. *7 спринт* - рефакторинг кода, начало работы с ООП и модулями (добавлены классы Card и FormValidator). *8 спринт* - код переписан в соответствии с ООП, модульный код собран с помощью Webpack. *9 спринт* - сайт подключен к api. Улучшены ux/ui составляющие.
+2. An interactive page where you can add photos, delete them, put likes. Part of the logic is written in JavaScript (appearance of pop-up windows, form validation, adding cards, etc.). In the *5th sprint* we implemented opening/closing and pop-up functionality for adding elements, removing them, as well as pop-up with a lightbox image. In *6th sprint* we developed form validation and improved UX when working with pop-ups. *Sprint 7* - code refactoring, getting started with OOP and modules (added Card and FormValidator classes). *8 sprint* - code rewritten in accordance with OOP, modular code built using Webpack. *9 sprint* - the site is connected to api. Improved ux/ui components.
 
-3. Применяемые технологии:
+3. Applied technologies:
   - flexbox;
   - grid layout;
-  - адаптивная верстка;
-  - валидация форм;
-  - код написан в соответствии с ООП;
-  - применяется сборщик модулей (Webpack)
+  - adaptive layout;
+  - form validation;
+  - The code is written according to OOP;
+  - module builder (Webpack) is used.
 
-4. Системные требования: язык HTML5/CSS3/JavaScript; web-браузер (браузер автора - Opera), сборщик - Webpack.
+4. System preferences: HTML5/CSS3/JavaScript; web-browser (dev browser – Opera), module bundler – Webpack.
 
-5. [Ссылка на gh-pages.](https://antoshkow.github.io/mesto/ "Ссылка на gh-pages.")
+5. [gh-pages link.](https://antoshkow.github.io/mesto/ "gh-pages link.")
